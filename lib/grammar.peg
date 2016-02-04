@@ -15,7 +15,7 @@ Query
   }
 
 Key
-  = name:VariableName ":" { return name; }
+  = name:Path ":" { return name; }
 
 Filters
   = "?" expressions:Expression+ {
@@ -71,7 +71,7 @@ Statement
   }
 
 Predicate
- = comparator:Comparator value:("+" / "-" / "*" / String / Word / Number)+ ","? {
+ = comparator:Comparator value:("+" / "-" / "*" / String / Path / Number)+ ","? {
    return {
      value: value.join(""),
      comparator: comparator
@@ -98,12 +98,12 @@ Fields
   }
 
 Field
-  = word:Word ","? {
-    return word;
+  = path:Path ","? {
+    return path;
   }
 
 Table
-  = head:"/"? tail:(Word / "/")* {
+  = head:"/"? tail:(Path / "/")* {
   	return tail.join("");
   }
 
