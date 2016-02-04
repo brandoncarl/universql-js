@@ -1,9 +1,6 @@
 Queries
   = query:Query queries:("," Query)* {
-    var results = [query];
-    for (var i = 0, n = queries.length; i < n; i++)
-      results.push(queries[i][1]);
-    return results;
+    return [query].concat(queries.map(function(x) { return x[1]; }));
   }
 
 Query
