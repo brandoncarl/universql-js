@@ -64,7 +64,6 @@ Options
 Statement
   = key:Word predicate:(Predicate / Regex) {
     return {
-      type: "statement",
       key: key,
       comparator: predicate.comparator,
       value: predicate.value
