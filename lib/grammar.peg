@@ -10,7 +10,7 @@ Query
       table: table,
       fields: fields,
       options: options,
-      filters: filters
+      filters: filters[0] || []
     };
   }
 
