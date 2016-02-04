@@ -34,7 +34,7 @@ Expression
 Term
   = head:Factor tail:(AndOperator Factor)* {
     if (tail.length) {
-      return { op : "&", terms: [head, tail[0][1]] };
+      return { op : "&", terms: [head].concat(tail.map(function(x) { return x[1]; })) };
     } else {
       return head;
     }
