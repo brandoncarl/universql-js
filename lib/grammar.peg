@@ -25,7 +25,7 @@ Filters
 Expression
   = head:Term tail:(OrOperator Term)* {
     if (tail.length) {
-      return { op : "|", terms: [head, tail[0][1]] };
+      return { op : "|", terms: [head].concat(tail.map(function(x) { return x[1]; })) };
     } else {
       return head;
     }
