@@ -107,6 +107,9 @@ Table
   	return tail.join("");
   }
 
+Path
+  = Word ("."? Word)* { return text(); }
+
 Word
   = (Variable / Template)
 
