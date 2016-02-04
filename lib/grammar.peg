@@ -1,8 +1,3 @@
-Queries
-  = query:Query queries:("," Query)* {
-    return [query].concat(queries.map(function(x) { return x[1]; }));
-  }
-
 Query
   = key:Key? table:Table fields:Fields? options:Options? filters:Filters? {
   	return {
