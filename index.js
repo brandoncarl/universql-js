@@ -1,7 +1,5 @@
 /**
 
-  !!! ADAPTER SHOULD HAVE INSTANCE THAT CAN BE ATTACHED TO DATA SOURCE
-
   UniversQL
   Copyright 2016 Brandon Carl
   MIT Licensed
@@ -341,39 +339,3 @@ function templater(data, fn) {
   }
 
 }
-
-
-
-// var str = '/api/recipes{name,{{field}}}[sort=+signupDate-revenue,limit=5]?key0=val0&(key1~/a*/|key2>=val2|key3=val3)&(key4=val4|key5=val5)&(key6=val6)';
-// str = 'recipes:/users{name,{{field}}}[sort=+signupDate-revenue,limit=5]?(key=value|key1="value1")&(key2~/value2/gi)'
-// recipes:/users{name,{{field}}}[sort=+signupDate-revenue,limit=5]?key1=val1&key2=val2&key3=val3
-
-// Add the JSON adapter (can be moved if needed)
-UniversQL.addAdapter(require("./adapters/adapter-json"));
-UniversQL.setDefaultAdapter("json");
-
-
-var fs = require("fs"),
-    json = JSON.parse(fs.readFileSync("./examples/recipes.json", "utf8")),
-    str = "/recipes{{{field}},servings,titles.title,missing}[sort=+{{field}},limit={{limit}}]?(servings~/6/|servings~/10/)&(missing=false)",
-    q = new UniversQL(str);
-
-
-// console.log(JSON.stringify(queries, null, 2));
-var results, next = function(){};
-    // fxn = q.jsonFunction();
-
-  console.time("S");
-for (var i = 0; i < 10000; i++)
-  // q.run("json", json, { field : "slug", limit: "5" }, next);
-
-  q.run("json", json, { field : "slug", limit: "5" }, function(err, results) {
-    // console.log(results);
-  });
-// console.log(results)
-  console.timeEnd("S");
-
-// var adapter = require("./adapters/adapter-json");
-// adapter.oldrun(q.query, { field : "slug", limit: "5" }, json, function(err, results) {
-//   console.log(results);
-// });
