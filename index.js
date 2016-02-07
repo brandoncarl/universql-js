@@ -44,6 +44,7 @@ var Query = require("./lib/query");
 **/
 
 var UniversQL = module.exports = function(queryString) {
+  this.queryString = queryString;
   this.query = new Query(queryString);
   this.compiled = {};
 
