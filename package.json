@@ -1,7 +1,7 @@
 {
-  "name": "commonql",
+  "name": "universql",
   "version": "0.1.0",
-  "description": "A condensed, common query language",
+  "description": "Universal database query language",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
