@@ -46,12 +46,14 @@ function run(query, data, next) {
   // Ensure we have an array of data
   if (!Array.isArray(data)) throw new Error("Data must be an array")
 
-  // Surprisingly, sorting first offers speed improvement
-  if (query.sort)
-    chain = chain.orderBy(query.sort.keys, query.sort.orders);
-
+  // Follow SQL-convention: FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY
+  // Except that we reverse the final two operations so that we can limit before
+  // mapping. This offers a substantial speed improvement.
   if (query.filters)
     chain = chain.filter(query.filters);
+
+  if (query.sort)
+    chain = chain.orderBy(query.sort.keys, query.sort.orders);
 
   if (query.limit)
     chain = (query.limit >= 0) ? chain.take(query.limit) : chain.takeRight(-query.limit);
