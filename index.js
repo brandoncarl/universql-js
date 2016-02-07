@@ -239,7 +239,7 @@ UniversQL.prototype.compile = function(name, recompile) {
 UniversQL.prototype.translate = function(name, context) {
 
   // Allow polymorphism
-  if ("object" === typeof name) {
+  if (name && "object" === typeof name) {
     context = name;
     name = null;
   }
@@ -270,6 +270,7 @@ UniversQL.prototype.run = function(name, data, context, next) {
     next = context;
     context = data;
     data = name;
+    name = null;
   }
 
   if ("function" === typeof context) {
