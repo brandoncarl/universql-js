@@ -217,7 +217,7 @@ UniversQL.prototype.compile = function(name, recompile) {
 
   if (!adapter) throw new Error("No working adapter has been specified");
 
-  this.compiled[adapter.name] = adapter.compile(this.query, templater.bind(this));
+  this.compiled[adapter.name] = adapter.compile(this.query, templater(this.templateRE));
 
   return this.compiled[adapter.name];
 
@@ -321,21 +321,23 @@ function createTemplate(template, pattern) {
 
 **/
 
-function templater(data, fn) {
+function templater(regex) {
+  return function(data, fn) {
+    var str = JSON.stringify(data),
+        tpl,
+        out;
 
-  var str = JSON.stringify(data),
-      fn = fn || function(x) { return x; },
-      tpl,
-      out;
+    // Set function default
+    fn = fn || function(x) { return x; };
 
-  if (this.templateRE.test(str)) {
-    tpl = createTemplate(str, this.templateRE);
-    return function(context) {
-      return fn(JSON.parse(tpl(context || {})));
-    };
-  } else {
-    out = fn(data);
-    return function() { return out; };
-  }
-
+    if (regex.test(str)) {
+      tpl = createTemplate(str, regex);
+      return function(context) {
+        return fn(JSON.parse(tpl(context || {})));
+      };
+    } else {
+      out = fn(data);
+      return function() { return out; };
+    }
+  };
 }
