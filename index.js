@@ -307,7 +307,9 @@ UniversQL.prototype.templateRE = /\{\{([\s\S]+?)\}\}/g;
 
 function createTemplate(template, pattern) {
   var str = "context = context || {}; var out ='" + template.replace(pattern, function(match, code) {
-        return "'+(context[\"" + code.trim() + "\"])+'";
+        code = code.trim();
+        if (/\./.test(code)) code = code.split(".").join('"]["')
+        return "'+(context[\"" + code + "\"])+'";
       });
   return new Function("context", str + "';return out;");
 }
