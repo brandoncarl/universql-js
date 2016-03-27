@@ -57,13 +57,19 @@ Options
   }
 
 Statement
-  = key:Word predicate:(Predicate / Regex) {
+  = key:Word index:Index? predicate:(Predicate / Regex) {
     return {
       key: key,
+      index: index,
       comparator: predicate.comparator,
       value: predicate.value
     }
   }
+
+Index
+ = head:"[" value:(Number / "*")? tail:"]" {
+   return value || "*";
+ }
 
 Predicate
  = comparator:Comparator value:("+" / "-" / "*" / String / Path / Number)+ ","? {
