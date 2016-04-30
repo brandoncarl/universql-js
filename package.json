@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/brandoncarl/commonql.git"
+    "url": "git://github.com/brandoncarl/universql-js.git"
   },
   "keywords": [
     "query"
@@ -16,7 +16,7 @@
   "author": "Brandon Carl (http://www.brandoncarl.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/brandoncarl/commonql/issues"
+    "url": "https://github.com/brandoncarl/universql-js/issues"
   },
-  "homepage": "https://github.com/brandoncarl/commonql#readme"
+  "homepage": "https://github.com/brandoncarl/universql-js#readme",
 }
