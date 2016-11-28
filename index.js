@@ -30,7 +30,7 @@
 //  Dependencies
 //
 
-var Query = require("./lib/query");
+var Parser = require('universql-parser');
 
 
 /**
@@ -43,11 +43,8 @@ var Query = require("./lib/query");
 
 var UniversQL = module.exports = function(queryString) {
   this.queryString = queryString;
-  this.query = new Query(queryString);
+  this.query = Parser.parse(queryString);
   this.compiled = {};
-
-  // this.translation
-
 };
 
 
