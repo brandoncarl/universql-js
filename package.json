@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/brandoncarl/universql-js#readme",
   "dependencies": {
-    "universql-parser": "^0.3.0"
+    "universql-parser": "^0.3.1"
   }
 }
