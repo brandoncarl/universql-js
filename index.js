@@ -42,9 +42,15 @@ var Parser = require('universql-parser');
 **/
 
 var UniversQL = module.exports = function(queryString) {
+
   this.queryString = queryString;
   this.query = Parser.parse(queryString);
   this.compiled = {};
+
+  // !!! THIS SHOULD BE REMOVED ONCE MULTIPLE TABLES ARE SUPPORTED
+  if (Array.isArray(this.query.tables) || !this.query.table)
+    this.query.table = this.query.tables[0];
+
 };
 
 
