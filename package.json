@@ -1,6 +1,6 @@
 {
   "name": "universql",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Universal database query language",
   "main": "index.js",
   "scripts": {
